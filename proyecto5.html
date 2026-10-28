@@ -11,15 +11,187 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Natalia Marce — Portfolio</title>
-  <link rel="stylesheet" href="style.css">
+  <!-- Google Fonts & FontAwesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    /* ESTILOS INTEGRADOS PARA QUE NUNCA SE PIERDA EL DISEÑO */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: #121212;
+      color: #e5e5e5;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+    }
+    .avatar {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 12px;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+    .hero h1 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.1em;
+      color: #ffffff;
+      margin-bottom: 10px;
+    }
+    .menu {
+      margin-bottom: 15px;
+    }
+    .menu a {
+      color: #a3a3a3;
+      text-decoration: none;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+    .menu a:hover {
+      color: #ffffff;
+    }
+    .social-links-header {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      margin-top: 5px;
+    }
+    .social-links-header a img {
+      width: 20px;
+      height: 20px;
+      filter: brightness(0.8);
+      transition: filter 0.2s;
+    }
+    .social-links-header a:hover img {
+      filter: brightness(1.2);
+    }
+    .project-page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+    .content-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .project-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 2.2rem;
+      letter-spacing: 0.05em;
+      color: #ffffff;
+      margin-bottom: 24px;
+    }
+    .intro-game {
+      font-size: 0.95rem;
+      color: #d4d4d4;
+      max-width: 650px;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+    #gameCanvas {
+      background: #1a1a1a;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 4px;
+      max-width: 100%;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+    .hint {
+      font-size: 0.75rem;
+      color: #888;
+      margin-bottom: 35px;
+      letter-spacing: 0.05em;
+    }
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      width: 100%;
+      margin: 30px 0 40px;
+    }
+    .mini-card {
+      background: #1a1a1a;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      overflow: hidden;
+      text-align: left;
+      transition: transform 0.3s ease;
+    }
+    .mini-card:hover {
+      transform: translateY(-3px);
+    }
+    .mini-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+    .mini-info {
+      padding: 16px;
+    }
+    .mini-info h3 {
+      font-size: 1rem;
+      color: #fff;
+      margin-bottom: 6px;
+      font-family: 'Oswald', sans-serif;
+    }
+    .mini-info p {
+      font-size: 0.75rem;
+      color: #888;
+      word-break: break-all;
+    }
+    .personal-info {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .ig-screenshot-link {
+      display: inline-block;
+      margin-top: 15px;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      transition: transform 0.3s;
+    }
+    .ig-screenshot-link:hover {
+      transform: scale(1.02);
+    }
+    .ig-screenshot {
+      max-width: 340px;
+      width: 100%;
+      display: block;
+    }
+  </style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MC3FL2ZR"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
+  
   <header class="hero">
-    <img src="img/avatar.png" class="avatar" alt="Avatar Natalia Marce">
+    <img src="img/avatar.png" class="avatar" alt="Avatar Natalia Marce" onerror="this.src='https://placehold.co/70x70/222/fff?text=NM'">
     <h1>NATALIA MARCE</h1>
 
     <nav class="menu">
@@ -28,13 +200,13 @@
 
     <div class="social-links-header">
       <a href="mailto:nataliamarce39@gmail.com" title="Email">
-        <img src="img/mail.png" alt="Email">
+        <i class="fa-solid fa-envelope text-lg text-neutral-400 hover:text-white"></i>
       </a>
       <a href="https://www.instagram.com/natt.doc/" target="_blank" title="Instagram">
-        <img src="img/instagram.png" alt="Instagram">
+        <i class="fa-brands fa-instagram text-lg text-neutral-400 hover:text-white"></i>
       </a>
       <a href="https://www.linkedin.com/in/natalia-marce-hidalgo-754200222/" target="_blank" title="LinkedIn">
-        <img src="img/linkedin.png" alt="LinkedIn">
+        <i class="fa-brands fa-linkedin-in text-lg text-neutral-400 hover:text-white"></i>
       </a>
     </div>
   </header>
@@ -62,7 +234,7 @@
 
     <section class="mini-grid">
       <div class="mini-card">
-        <img src="img/match-electoral.png" alt="Match Electoral">
+        <img src="img/match-electoral.png" alt="Match Electoral" onerror="this.src='https://placehold.co/400x200/222/fff?text=Match+Electoral'">
         <div class="mini-info">
           <h3>Match Electoral 2026</h3>
           <p>https://matchelectoral.netlify.app/</p>
@@ -70,7 +242,7 @@
       </div>
 
       <div class="mini-card">
-        <img src="img/sistema-pedidos.png" alt="Sistema de Gestión">
+        <img src="img/sistema-pedidos.png" alt="Sistema de Gestión" onerror="this.src='https://placehold.co/400x200/222/fff?text=Sistema+Pedidos'">
         <div class="mini-info">
           <h3>Sistema de pedidos</h3>
           <p>https://listaproductos-dialex.netlify.app/</p>
@@ -84,7 +256,7 @@
       </p>
       
       <a href="https://www.instagram.com/natt.doc/" target="_blank" class="ig-screenshot-link">
-        <img src="img/captura-ig.png" alt="Captura de pantalla de perfil de Instagram @natt.doc" class="ig-screenshot">
+        <img src="img/captura-ig.png" alt="Captura de pantalla de perfil de Instagram @natt.doc" class="ig-screenshot" onerror="this.src='https://placehold.co/340x400/222/fff?text=Instagram+Preview'">
       </a>
     </div>
   </div>
@@ -94,7 +266,6 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
-// CONTROL DE CARGA ASÍNCRONA
 let imagenesCargadas = 0;
 const totalImagenes = 3;
 
@@ -123,9 +294,7 @@ let frame = 0;
 let score = 0;
 let gameOver = false;
 
-// FUNCIÓN PARA SALTAR O REINICIAR (Funciona para toques, clics y teclado)
 function accionJuego(e) {
-  // Evitamos que la pantalla del celular se mueva al tocar el juego
   if (e && e.type === "touchstart") {
     e.preventDefault(); 
   }
@@ -140,13 +309,9 @@ function accionJuego(e) {
   }
 }
 
-// 1. ESCUCHAR CLICS DEL MOUSE
 canvas.addEventListener("mousedown", accionJuego);
-
-// 2. ESCUCHAR TOQUES EN PANTALLA (CELULARES)
 canvas.addEventListener("touchstart", accionJuego, { passive: false });
 
-// 3. ESCUCHAR TECLADO (PC)
 document.addEventListener("keydown", function(e) {
   if (e.code === "Space") {
     e.preventDefault(); 
@@ -184,7 +349,6 @@ function update() {
   obstacles.forEach((obs, index) => {
     obs.x -= 6; 
     
-    // HITBOX
     if (
       player.x + 18 < obs.x + obs.width - 18 &&
       player.x + player.width - 18 > obs.x + 18 &&
@@ -201,23 +365,44 @@ function update() {
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   
-  ctx.drawImage(fondo, 0, 0, canvas.width, canvas.height);
+  if (fondo.complete && fondo.naturalWidth !== 0) {
+    ctx.drawImage(fondo, 0, 0, canvas.width, canvas.height);
+  } else {
+    ctx.fillStyle = "#222";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+  }
 
-  ctx.drawImage(avatar, player.x, player.y, player.width, player.height);
+  if (avatar.complete && avatar.naturalWidth !== 0) {
+    ctx.drawImage(avatar, player.x, player.y, player.width, player.height);
+  } else {
+    ctx.fillStyle = "#fff";
+    ctx.fillRect(player.x, player.y, player.width, player.height);
+  }
   
   obstacles.forEach(obs => {
-    ctx.drawImage(chosicano, obs.x, obs.y, obs.width, obs.height);
+    if (chosicano.complete && chosicano.naturalWidth !== 0) {
+      ctx.drawImage(chosicano, obs.x, obs.y, obs.width, obs.height);
+    } else {
+      ctx.fillStyle = "#e5e5e5";
+      ctx.fillRect(obs.x, obs.y, obs.width, obs.height);
+    }
   });
   
-  ctx.fillStyle = "#111"; ctx.font = "bold 20px Helvetica, Arial, sans-serif";
+  ctx.fillStyle = "#e5e5e5"; 
+  ctx.font = "bold 20px Helvetica, Arial, sans-serif";
   ctx.fillText("Score: " + score, 650, 40);
   
   if (gameOver) {
-    ctx.fillStyle = "rgba(241, 242, 246, 0.85)"; ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = "#111"; ctx.textAlign = "center"; ctx.font = "bold 36px Helvetica, Arial, sans-serif";
-    ctx.fillText("GAME OVER", canvas.width / 2, 140); ctx.font = "16px Helvetica, Arial, sans-serif";
-    // Actualizamos el texto de Game Over para celulares
-    ctx.fillText("Presiona ENTER o TOCA EL JUEGO para reiniciar", canvas.width / 2, 180); ctx.textAlign = "left"; 
+    ctx.fillStyle = "rgba(18, 18, 18, 0.9)"; 
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "#ffffff"; 
+    ctx.textAlign = "center"; 
+    ctx.font = "bold 36px Helvetica, Arial, sans-serif";
+    ctx.fillText("GAME OVER", canvas.width / 2, 140); 
+    ctx.font = "16px Helvetica, Arial, sans-serif";
+    ctx.fillStyle = "#a3a3a3";
+    ctx.fillText("Presiona ENTER o TOCA EL JUEGO para reiniciar", canvas.width / 2, 180); 
+    ctx.textAlign = "left"; 
   }
 }
 
@@ -234,15 +419,22 @@ function restartGame() {
 
 function revisarCarga() {
   imagenesCargadas++;
-  if (imagenesCargadas === totalImagenes) {
+  if (imagenesCargadas >= totalImagenes) {
     gameLoop();
   }
 }
 
+// Respaldo por si las imágenes cargan antes o hay algún retraso
 avatar.onload = revisarCarga;
 fondo.onload = revisarCarga;
 chosicano.onload = revisarCarga;
 
+// Forzar inicio si las imágenes ya estaban en caché
+setTimeout(() => {
+  if (imagenesCargadas < totalImagenes) {
+    gameLoop();
+  }
+}, 300);
 </script>
 
 </body>
