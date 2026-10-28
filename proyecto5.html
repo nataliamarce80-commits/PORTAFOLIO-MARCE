@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-MC3FL2ZR');</script>
+  <!-- End Google Tag Manager -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Natalia Marce — Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MC3FL2ZR"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <header class="hero">
+    <img src="img/avatar.png" class="avatar" alt="Avatar Natalia Marce">
+    <h1>NATALIA MARCE</h1>
+
+    <nav class="menu">
+      <a href="index.html" class="active">Trabajo</a>
+    </nav>
+
+    <div class="social-links-header">
+      <a href="mailto:nataliamarce39@gmail.com" title="Email">
+        <img src="img/mail.png" alt="Email">
+      </a>
+      <a href="https://www.instagram.com/natt.doc/" target="_blank" title="Instagram">
+        <img src="img/instagram.png" alt="Instagram">
+      </a>
+      <a href="https://www.linkedin.com/in/natalia-marce-hidalgo-754200222/" target="_blank" title="LinkedIn">
+        <img src="img/linkedin.png" alt="LinkedIn">
+      </a>
+    </div>
+  </header>
+
+<main class="project-page">
+  <div class="content-wrapper">
+    <h2 class="project-title">MARCE - (YO)</h2>
+    
+    <p class="intro-game">
+      Hola, soy Marce. Si llegaste hasta aquí, espero que al menos hayas visto un par de mis proyectos. 
+      Este jueguito está aquí para robarte unos segundos… y, con suerte, hacer que me recuerdes como la chica del jueguito.
+    </p>
+
+    <canvas id="gameCanvas" width="800" height="300"></canvas>
+    <p class="hint">Presiona ESPACIO o TOCA EL JUEGO para saltar</p>
+
+    <p class="intro-game">
+      Aparte de publicidad, me gusta meterme a diseñar cosas digitales. A veces soluciones… a veces no tanto. 
+      Hice un Tinder presidencial y logré sacar data de 400 personas; no es mucho, pero es trabajo honesto.
+      <br><br>
+      En mi trabajo armé una web para pedidos porque todo vivía en Excel y era un caos. Para lograrlo, hablé con varias áreas y terminé sintiéndome como Nick Fury, pero reclutando necesidades en vez de Avengers. 
+      <br><br>
+      <strong>Aquí puedes ver un chismear sobre ambos:</strong>
+    </p>
+
+    <section class="mini-grid">
+      <div class="mini-card">
+        <img src="img/match-electoral.png" alt="Match Electoral">
+        <div class="mini-info">
+          <h3>Match Electoral 2026</h3>
+          <p>https://matchelectoral.netlify.app/</p>
+        </div>
+      </div>
+
+      <div class="mini-card">
+        <img src="img/sistema-pedidos.png" alt="Sistema de Gestión">
+        <div class="mini-info">
+          <h3>Sistema de pedidos</h3>
+          <p>https://listaproductos-dialex.netlify.app/</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="personal-info">
+      <p class="intro-game">
+        Fan del anime, la animación y nadar. En mis ratos libres me gusta sumarme a voluntariados (Pride, KP Wasi, Banco de Alimentos, OEECSA). Te dejo mi Instagram por acá:<strong> (Da click a la imagen):</strong>
+      </p>
+      
+      <a href="https://www.instagram.com/natt.doc/" target="_blank" class="ig-screenshot-link">
+        <img src="img/captura-ig.png" alt="Captura de pantalla de perfil de Instagram @natt.doc" class="ig-screenshot">
+      </a>
+    </div>
+  </div>
+</main>
+
+<script>
+const canvas = document.getElementById("gameCanvas");
+const ctx = canvas.getContext("2d");
+
+// CONTROL DE CARGA ASÍNCRONA
+let imagenesCargadas = 0;
+const totalImagenes = 3;
+
+const avatar = new Image();
+avatar.src = "img/avatar.png"; 
+
+const fondo = new Image();
+fondo.src = "img/fondo.png"; 
+
+const chosicano = new Image();
+chosicano.src = "img/chosicano.png"; 
+
+let player = { 
+  x: 50, 
+  y: 190, 
+  width: 90, 
+  height: 90, 
+  velocityY: 0, 
+  gravity: 0.8, 
+  jumpForce: -16, 
+  isJumping: false 
+};
+
+let obstacles = [];
+let frame = 0;
+let score = 0;
+let gameOver = false;
+
+// FUNCIÓN PARA SALTAR O REINICIAR (Funciona para toques, clics y teclado)
+function accionJuego(e) {
+  // Evitamos que la pantalla del celular se mueva al tocar el juego
+  if (e && e.type === "touchstart") {
+    e.preventDefault(); 
+  }
+
+  if (gameOver) {
+    restartGame();
+  } else {
+    if (!player.isJumping) { 
+      player.velocityY = player.jumpForce; 
+      player.isJumping = true; 
+    }
+  }
+}
+
+// 1. ESCUCHAR CLICS DEL MOUSE
+canvas.addEventListener("mousedown", accionJuego);
+
+// 2. ESCUCHAR TOQUES EN PANTALLA (CELULARES)
+canvas.addEventListener("touchstart", accionJuego, { passive: false });
+
+// 3. ESCUCHAR TECLADO (PC)
+document.addEventListener("keydown", function(e) {
+  if (e.code === "Space") {
+    e.preventDefault(); 
+    if (!gameOver && !player.isJumping) { 
+      player.velocityY = player.jumpForce; 
+      player.isJumping = true; 
+    }
+  }
+  if (e.code === "Enter" && gameOver) restartGame();
+});
+
+function spawnObstacle() { 
+  obstacles.push({ 
+    x: canvas.width, 
+    y: 205,      
+    width: 140,  
+    height: 85   
+  }); 
+}
+
+function update() {
+  if (gameOver) return;
+  frame++; score++;
+  
+  player.y += player.velocityY;
+  player.velocityY += player.gravity;
+  
+  if (player.y >= 190) { 
+    player.y = 190; 
+    player.isJumping = false; 
+  }
+  
+  if (frame % 110 === 0) spawnObstacle();
+  
+  obstacles.forEach((obs, index) => {
+    obs.x -= 6; 
+    
+    // HITBOX
+    if (
+      player.x + 18 < obs.x + obs.width - 18 &&
+      player.x + player.width - 18 > obs.x + 18 &&
+      player.y + 18 < obs.y + obs.height - 18 &&
+      player.y + player.height - 18 > obs.y + 18
+    ) {
+      gameOver = true;
+    }
+    
+    if (obs.x < -obs.width) obstacles.splice(index, 1);
+  });
+}
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  
+  ctx.drawImage(fondo, 0, 0, canvas.width, canvas.height);
+
+  ctx.drawImage(avatar, player.x, player.y, player.width, player.height);
+  
+  obstacles.forEach(obs => {
+    ctx.drawImage(chosicano, obs.x, obs.y, obs.width, obs.height);
+  });
+  
+  ctx.fillStyle = "#111"; ctx.font = "bold 20px Helvetica, Arial, sans-serif";
+  ctx.fillText("Score: " + score, 650, 40);
+  
+  if (gameOver) {
+    ctx.fillStyle = "rgba(241, 242, 246, 0.85)"; ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "#111"; ctx.textAlign = "center"; ctx.font = "bold 36px Helvetica, Arial, sans-serif";
+    ctx.fillText("GAME OVER", canvas.width / 2, 140); ctx.font = "16px Helvetica, Arial, sans-serif";
+    // Actualizamos el texto de Game Over para celulares
+    ctx.fillText("Presiona ENTER o TOCA EL JUEGO para reiniciar", canvas.width / 2, 180); ctx.textAlign = "left"; 
+  }
+}
+
+function gameLoop() { update(); draw(); requestAnimationFrame(gameLoop); }
+
+function restartGame() { 
+  obstacles = []; 
+  score = 0; 
+  frame = 0; 
+  gameOver = false; 
+  player.y = 190; 
+  player.velocityY = 0; 
+}
+
+function revisarCarga() {
+  imagenesCargadas++;
+  if (imagenesCargadas === totalImagenes) {
+    gameLoop();
+  }
+}
+
+avatar.onload = revisarCarga;
+fondo.onload = revisarCarga;
+chosicano.onload = revisarCarga;
+
+</script>
+
+</body>
+</html>
