@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marce & Natalia | Portfolio Creativo</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkbg: '#121212',
+                        cardbg: '#1a1a1a',
+                        accent: '#e5e5e5'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Oswald', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #121212;
+            color: #e5e5e5;
+            font-family: 'Inter', sans-serif;
+        }
+        .project-title-font {
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: 0.05em;
+        }
+        /* Smooth transitions for grid cards */
+        .project-card {
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-4px);
+        }
+        .project-card img {
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .project-card:hover img {
+            transform: scale(1.03);
+        }
+    </style>
+</head>
+<body class="bg-darkbg text-accent antialiased selection:bg-neutral-700 selection:text-white min-h-screen flex flex-col justify-between">
+
+    <!-- Header Navigation -->
+    <header class="w-full px-6 md:px-12 py-6 flex items-center justify-between border-b border-neutral-800/60 sticky top-0 bg-[#121212]/90 backdrop-blur-md z-40">
+        <nav class="flex items-center gap-6 md:gap-8 text-xs md:text-sm font-semibold tracking-wider">
+            <button onclick="scrollToSection('work')" class="hover:text-white transition-colors uppercase cursor-pointer">Work</button>
+            <button onclick="openModal('about-modal')" class="hover:text-white transition-colors uppercase cursor-pointer">About</button>
+            <button onclick="openModal('contact-modal')" class="hover:text-white transition-colors uppercase cursor-pointer">Contact</button>
+        </nav>
+        <div class="project-title-font text-lg md:text-2xl font-bold tracking-widest text-white cursor-pointer" onclick="scrollToSection('work')">
+            MARCE & NATALIA
+        </div>
+    </header>
+
+    <!-- Main Content: Projects Grid -->
+    <main id="work" class="flex-grow px-4 md:px-12 py-8 md:py-12 max-w-[1600px] mx-auto w-full">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+            
+            <!-- Project 1: DUO VPN - DUOLINGO -->
+            <div onclick="openProjectModal('duolingo')" class="project-card group relative bg-cardbg overflow-hidden cursor-pointer rounded-sm aspect-[16/10] md:aspect-[16/11] flex flex-col justify-end border border-neutral-800/80 shadow-2xl">
+                <div class="absolute inset-0 w-full h-full overflow-hidden">
+                    <img src="https://res.cloudinary.com/mtjqlf2y/image/upload/v1792017421/DUO_VPN.png" alt="Duo VPN - Duolingo" class="w-full h-full object-cover object-center filter brightness-90 group-hover:brightness-100">
+                </div>
+                <!-- Gradient overlay -->
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                
+                <!-- Badge / Annotation to notify image can be changed -->
+                <div class="absolute top-4 right-4 bg-neutral-900/90 text-neutral-300 text-[10px] md:text-xs px-2.5 py-1 rounded border border-neutral-700/60 shadow-md backdrop-blur-sm pointer-events-none flex items-center gap-1.5">
+                    <i class="fa-regular fa-image text-neutral-400"></i> Board actual (Personalizable)
+                </div>
+
+                <div class="relative z-10 p-6 md:p-8 flex flex-col justify-end">
+                    <span class="text-xs uppercase tracking-widest text-neutral-400 font-medium mb-1">Duolingo</span>
+                    <h3 class="project-title-font text-2xl md:text-4xl font-bold text-white tracking-wide">DUO VPN</h3>
+                </div>
+            </div>
+
+            <!-- Project 2: STORIA WAVES - DISNEY -->
+            <div onclick="openProjectModal('disney')" class="project-card group relative bg-cardbg overflow-hidden cursor-pointer rounded-sm aspect-[16/10] md:aspect-[16/11] flex flex-col justify-end border border-neutral-800/80 shadow-2xl">
+                <div class="absolute inset-0 w-full h-full overflow-hidden">
+                    <img src="https://res.cloudinary.com/mtjqlf2y/image/upload/v1792017410/StorIA_Waves_board.png" alt="StorIA Waves - Disney" class="w-full h-full object-cover object-center filter brightness-90 group-hover:brightness-100">
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                
+                <div class="absolute top-4 right-4 bg-neutral-900/90 text-neutral-300 text-[10px] md:text-xs px-2.5 py-1 rounded border border-neutral-700/60 shadow-md backdrop-blur-sm pointer-events-none flex items-center gap-1.5">
+                    <i class="fa-regular fa-image text-neutral-400"></i> Board actual (Personalizable)
+                </div>
+
+                <div class="relative z-10 p-6 md:p-8 flex flex-col justify-end">
+                    <span class="text-xs uppercase tracking-widest text-neutral-400 font-medium mb-1">Disney</span>
+                    <h3 class="project-title-font text-2xl md:text-4xl font-bold text-white tracking-wide">STORIA WAVES</h3>
+                </div>
+            </div>
+
+            <!-- Project 3: A TU REVES - BATTIMIX -->
+            <div onclick="openProjectModal('battimix')" class="project-card group relative bg-cardbg overflow-hidden cursor-pointer rounded-sm aspect-[16/10] md:aspect-[16/11] flex flex-col justify-end border border-neutral-800/80 shadow-2xl">
+                <div class="absolute inset-0 w-full h-full overflow-hidden">
+                    <img src="https://res.cloudinary.com/mtjqlf2y/image/upload/v1792041410/Board_APAP.png" alt="A Tu Reves - Battimix" class="w-full h-full object-cover object-center filter brightness-90 group-hover:brightness-100">
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                
+                <div class="absolute top-4 right-4 bg-neutral-900/90 text-neutral-300 text-[10px] md:text-xs px-2.5 py-1 rounded border border-neutral-700/60 shadow-md backdrop-blur-sm pointer-events-none flex items-center gap-1.5">
+                    <i class="fa-regular fa-image text-neutral-400"></i> Board actual (Personalizable)
+                </div>
+
+                <div class="relative z-10 p-6 md:p-8 flex flex-col justify-end">
+                    <span class="text-xs uppercase tracking-widest text-neutral-400 font-medium mb-1">Battimix</span>
+                    <h3 class="project-title-font text-2xl md:text-4xl font-bold text-white tracking-wide">A TU REVES</h3>
+                </div>
+            </div>
+
+            <!-- Project 4: HEATMAPS - CABIFY -->
+            <div onclick="openProjectModal('cabify')" class="project-card group relative bg-cardbg overflow-hidden cursor-pointer rounded-sm aspect-[16/10] md:aspect-[16/11] flex flex-col justify-end border border-neutral-800/80 shadow-2xl">
+                <div class="absolute inset-0 w-full h-full overflow-hidden">
+                    <img src="https://res.cloudinary.com/nibm0dbr/image/upload/f_auto/q_auto/proyecto1-2.png" alt="Heatmaps - Cabify" class="w-full h-full object-cover object-center filter brightness-90 group-hover:brightness-100" onerror="this.src='https://placehold.co/1200x800/1a1a1a/e5e5e5?text=Cabify+Heatmaps';">
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                
+                <div class="absolute top-4 right-4 bg-neutral-900/90 text-neutral-300 text-[10px] md:text-xs px-2.5 py-1 rounded border border-neutral-700/60 shadow-md backdrop-blur-sm pointer-events-none flex items-center gap-1.5">
+                    <i class="fa-regular fa-image text-neutral-400"></i> Board actual (Personalizable)
+                </div>
+
+                <div class="relative z-10 p-6 md:p-8 flex flex-col justify-end">
+                    <span class="text-xs uppercase tracking-widest text-neutral-400 font-medium mb-1">Cabify</span>
+                    <h3 class="project-title-font text-2xl md:text-4xl font-bold text-white tracking-wide">HEATMAPS</h3>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full px-6 md:px-12 py-8 border-t border-neutral-800/60 text-xs text-neutral-500 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>&copy; 2026 Marce & Natalia. Todos los derechos reservados.</div>
+        <div class="flex items-center gap-6">
+            <a href="mailto:contacto@marcenatalia.com" class="hover:text-white transition-colors">Email</a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener" class="hover:text-white transition-colors">LinkedIn</a>
+            <a href="https://instagram.com" target="_blank" rel="noopener" class="hover:text-white transition-colors">Instagram</a>
+        </div>
+    </footer>
+
+    <!-- IMMERSIVE PROJECT MODAL -->
+    <div id="project-modal" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-md hidden overflow-y-auto">
+        <div class="min-h-screen px-4 py-8 md:py-16 max-w-5xl mx-auto flex flex-col justify-start relative">
+            
+            <!-- Close Button -->
+            <button onclick="closeProjectModal()" class="fixed top-6 right-6 md:top-8 md:right-12 z-50 bg-neutral-800/80 hover:bg-neutral-700 text-white w-10 h-10 rounded-full flex items-center justify-center transition-colors shadow-lg cursor-pointer">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <!-- Modal Content Container -->
+            <div id="modal-content" class="w-full flex flex-col gap-10 mt-6">
+                <!-- Dynamically populated -->
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ABOUT MODAL -->
+    <div id="about-modal" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-md hidden overflow-y-auto flex items-center justify-center p-4">
+        <div class="bg-cardbg border border-neutral-800 max-w-2xl w-full p-8 md:p-12 relative rounded-sm shadow-2xl">
+            <button onclick="closeModal('about-modal')" class="absolute top-6 right-6 text-neutral-400 hover:text-white cursor-pointer">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <h2 class="project-title-font text-3xl md:text-4xl font-bold text-white mb-6">SOBRE NOSOTRAS</h2>
+            <p class="text-neutral-300 text-sm md:text-base leading-relaxed mb-6">
+                Somos Marce y Natalia, una dupla creativa apasionada por transformar ideas complejas en conceptos publicitarios memorables y con pegada real. Combinamos estrategia, dirección de arte y copywriting para construir campañas que conectan emocionalmente con las personas y generan impacto en la industria.
+            </p>
+            <p class="text-neutral-400 text-sm leading-relaxed">
+                Con experiencia en grandes marcas y agencias, nuestro enfoque se basa en buscar siempre el ángulo fresco, la tensión correcta y el storytelling impecable.
+            </p>
+        </div>
+    </div>
+
+    <!-- CONTACT MODAL -->
+    <div id="contact-modal" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-md hidden overflow-y-auto flex items-center justify-center p-4">
+        <div class="bg-cardbg border border-neutral-800 max-w-md w-full p-8 md:p-10 relative rounded-sm shadow-2xl text-center">
+            <button onclick="closeModal('contact-modal')" class="absolute top-6 right-6 text-neutral-400 hover:text-white cursor-pointer">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <h2 class="project-title-font text-3xl font-bold text-white mb-4">HABLEMOS</h2>
+            <p class="text-neutral-400 text-sm mb-6">¿Tienes un proyecto, un brief desafiante o simplemente quieres conversar sobre ideas?</p>
+            <a href="mailto:marce.natalia.creativo@gmail.com" class="inline-block bg-white text-black font-semibold text-sm px-6 py-3 rounded-sm hover:bg-neutral-200 transition-colors mb-4 w-full">
+                marce.natalia.creativo@gmail.com
+            </a>
+            <div class="text-xs text-neutral-500">Disponible para nuevos retos y consultorías creativas.</div>
+        </div>
+    </div>
+
+    <!-- Notification Toast for Custom Image Note -->
+    <div id="toast" class="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-neutral-900 border border-neutral-700 text-neutral-200 text-xs px-4 py-3 rounded shadow-2xl z-50 hidden flex items-center gap-3">
+        <i class="fa-solid fa-circle-info text-neutral-400"></i>
+        <span>Nota: Las imágenes de portada son fácilmente intercambiables en el código o panel futuro.</span>
+    </div>
+
+    <!-- JavaScript logic -->
+    <script>
+        // Project Data Structure
+        const projectsData = {
+            duolingo: {
+                client: "Duolingo",
+                title: "DUO VPN",
+                description: "Cuando la única forma de seguir aprendiendo un idioma bloqueado o acceder a contenidos globales es saltarse las barreras digitales. Duo VPN convierte la app de idiomas en la herramienta definitiva para navegar sin fronteras, haciendo que practicar vocabulario sea también sinónimo de libertad.",
+                vimeoId: "1236022699",
+                boardUrl: "https://res.cloudinary.com/mtjqlf2y/image/upload/v1792017421/DUO_VPN.png"
+            },
+            disney: {
+                client: "Disney",
+                title: "STORIA WAVES",
+                description: "Una experiencia inmersiva impulsada por inteligencia artificial y sensibilidad narrativa donde las ondas sonoras de las historias clásicas de Disney cobran vida visualmente, conectando a las nuevas generaciones con la magia de la lectura y el audio interactivo.",
+                vimeoId: "1236012512",
+                boardUrl: "https://res.cloudinary.com/mtjqlf2y/image/upload/v1792017410/StorIA_Waves_board.png"
+            },
+            battimix: {
+                client: "Battimix",
+                title: "A TU REVES",
+                description: "Dándole vuelta a la forma tradicional de disfrutar el snack favorito. Una campaña lúdica, fresca y directa al público joven que desafía las reglas establecidas de consumo con un concepto disruptivo y divertido.",
+                vimeoId: "1236020803",
+                boardUrl: "https://res.cloudinary.com/mtjqlf2y/image/upload/v1792041410/Board_APAP.png"
+            },
+            cabify: {
+                client: "Cabify",
+                title: "HEATMAPS",
+                description: "Transformando los datos de movilidad urbana en mapas de calor emocionales y estratégicos. Una solución creativa para entender el flujo de la ciudad y optimizar la experiencia de viaje tanto para pasajeros como conductores.",
+                vimeoId: "1187216645",
+                boardUrl: "https://res.cloudinary.com/nibm0dbr/image/upload/f_auto/q_auto/proyecto1-2.png"
+            }
+        };
+
+        function scrollToSection(id) {
+            const el = document.getElementById(id);
+            if(el) {
+                el.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function openProjectModal(projectId) {
+            const project = projectsData[projectId];
+            if (!project) return;
+
+            const modalContent = document.getElementById('modal-content');
+            
+            // Build immersive view HTML
+            modalContent.innerHTML = `
+                <div class="space-y-4">
+                    <span class="text-xs uppercase tracking-widest text-neutral-400 font-semibold">${project.client}</span>
+                    <h2 class="project-title-font text-3xl md:text-5xl font-bold text-white">${project.title}</h2>
+                    <p class="text-neutral-300 text-sm md:text-base leading-relaxed max-w-3xl">${project.description}</p>
+                </div>
+
+                <!-- Responsive Vimeo Video Case -->
+                <div class="w-full">
+                    <h3 class="text-xs uppercase tracking-widest text-neutral-400 font-semibold mb-3">Videocaso</h3>
+                    <div class="relative w-full overflow-hidden rounded-sm bg-neutral-900 border border-neutral-800 shadow-2xl" style="padding-top: 56.25%;">
+                        <iframe src="https://player.vimeo.com/video/${project.vimeoId}?autoplay=0&title=0&byline=0&portrait=0" 
+                                class="absolute top-0 left-0 w-full h-full border-0" 
+                                allow="autoplay; fullscreen; picture-in-picture" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+
+                <!-- Complete Board -->
+                <div class="w-full pt-4">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="text-xs uppercase tracking-widest text-neutral-400 font-semibold">Board del Proyecto</h3>
+                        <span class="text-[11px] text-neutral-500 bg-neutral-900 px-2.5 py-1 rounded border border-neutral-800">
+                            <i class="fa-regular fa-pen-to-square mr-1"></i> Imagen adaptable / intercambiable
+                        </span>
+                    </div>
+                    <div class="rounded-sm overflow-hidden border border-neutral-800 bg-neutral-900 shadow-2xl">
+                        <img src="${project.boardUrl}" alt="${project.title} Board" class="w-full h-auto object-cover" onerror="this.src='https://placehold.co/1200x800/1a1a1a/e5e5e5?text=Board+Placeholder';">
+                    </div>
+                </div>
+                
+                <div class="pt-8 pb-12 flex justify-center">
+                    <button onclick="closeProjectModal()" class="text-xs uppercase tracking-widest text-neutral-400 hover:text-white border border-neutral-700 px-6 py-3 rounded-sm transition-colors cursor-pointer">
+                        &larr; Volver al Portfolio
+                    </button>
+                </div>
+            `;
+
+            document.getElementById('project-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeProjectModal() {
+            document.getElementById('project-modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+            // Pause videos by clearing content or letting modal close
+            document.getElementById('modal-content').innerHTML = '';
+        }
+
+        // Show subtle info toast on load
+        window.addEventListener('DOMContentLoaded', () => {
+            const toast = document.getElementById('toast');
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 5000);
+        });
+
+        // Close modals on ESC key
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeProjectModal();
+                closeModal('about-modal');
+                closeModal('contact-modal');
+            }
+        });
+    </script>
+</body>
+</html>
